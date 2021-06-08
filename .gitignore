@@ -1,0 +1,58 @@
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
+
+
+# QUASAR GIT IGNORE
+
+gomedia_frontend/.DS_Store
+gomedia_frontend/.thumbs.db
+gomedia_frontend/node_modules
+gomedia_frontend/.idea
+gomedia_frontend/.vscode
+
+gomedia_frontend/.DS_Store
+gomedia_frontend/.thumbs.db
+gomedia_frontend/node_modules
+
+# Quasar core related directories
+gomedia_frontend/.quasar
+gomedia_frontend/dist
+
+# Cordova related directories and files
+gomedia_frontend/src-cordova/node_modules
+gomedia_frontend/src-cordova/platforms
+gomedia_frontend/src-cordova/plugins
+gomedia_frontend/src-cordova/www
+
+# Capacitor related directories and files
+gomedia_frontend/src-capacitor/www
+gomedia_frontend/src-capacitor/node_modules
+
+# BEX related directories and files
+gomedia_frontend/src-bex/www
+gomedia_frontend/src-bex/js/core
+
+# Log files
+gomedia_frontend/npm-debug.log*
+gomedia_frontend/yarn-debug.log*
+gomedia_frontend/yarn-error.log*
+
+# Editor directories and files
+gomedia_frontend/.idea
+gomedia_frontend/*.suo
+gomedia_frontend/*.ntvs*
+gomedia_frontend/*.njsproj
+gomedia_frontend/*.sln
