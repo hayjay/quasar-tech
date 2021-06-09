@@ -1,4 +1,5 @@
 
+import { Store } from '../store/index.js';
 const routes = [
   {
     path: '/dashboard',
@@ -7,10 +8,18 @@ const routes = [
       { path: '', component: () => import('pages/Index.vue') },
       { path: '/list/all', component: () => import('components/list/Index.vue') },
       { path: '/list/create', component: () => import('components/list/Add.vue') },
-    ]
+    ],
+    // beforeEnter: (to, from, next) => {
+    //     if(Store.state.auth.authenticated) {
+    //        return next();
+
+    //     }
+    //     return next('/');
+    // }
   },
   {
     path: '/',
+    name: 'login',
     component: () => import('components/auth/Login.vue'),
   },
   // Always leave this as last one,

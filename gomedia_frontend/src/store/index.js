@@ -14,16 +14,18 @@ Vue.use(Vuex)
  * with the Store instance.
  */
 
-export default function (/* { ssrContext } */) {
-  const Store = new Vuex.Store({
-    modules: {
-      auth
-    },
+const Store = new Vuex.Store({
+  modules: {
+    auth
+  },
 
-    // enable strict mode (adds overhead!)
-    // for dev mode and --debug builds only
-    strict: process.env.DEBUGGING
-  })
+  // enable strict mode (adds overhead!)
+  // for dev mode and --debug builds only
+  strict: process.env.DEBUGGING
+})
+
+export default function ({ store }) {
+  
 
   /*
     if we want some HMR magic for it, we handle
@@ -41,3 +43,5 @@ export default function (/* { ssrContext } */) {
 
   return Store
 }
+
+export { Store }

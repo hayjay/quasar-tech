@@ -15,7 +15,7 @@
           Quasar Listings App 
         </q-toolbar-title>
 
-        <div>T v{{ $q.version }}</div>
+        <div>{{ user.name }}</div>
       </q-toolbar>
     </q-header>
 
@@ -37,6 +37,10 @@
           :key="link.title"
           v-bind="link"
         />
+        <q-item clickable v-ripple>
+          <q-icon name="logout" /><q-item-section icon="logout" @click.prevent="signOut">Logout</q-item-section>
+        </q-item>
+        <!-- <q-btn color="white" text-color="black" label="Logout"></q-btn> -->
       </q-list>
     </q-drawer>
     <q-page-container>
@@ -47,6 +51,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
@@ -74,12 +79,6 @@ const linksData = [
     icon: 'chat',
     link: '/user/transaction-log'
   },
-  {
-    title: 'Log Out!',
-    caption: '@quasarframework',
-    icon: 'logout',
-    link: 'user/logout'
-  },
 ];
 
 export default {
@@ -90,6 +89,29 @@ export default {
       leftDrawerOpen: false,
       essentialLinks: linksData
     }
+  },
+  
+  methods: {
+    ...mapActions({
+      signOutAction: 'auth/signOut'
+    }),
+
+    async signOut() {
+      await this.signOutAction();
+      this.$q.notify({
+          icon: 'done',
+          color: 'positive',
+          message: `Logged Out!`
+      });
+      this.$router.push('/');
+    }
+  }, 
+
+  computed: {
+      ...mapGetters({
+        authenticated: 'auth/authenticated',
+        user: 'auth/user',
+      })
   }
 }
 </script>
