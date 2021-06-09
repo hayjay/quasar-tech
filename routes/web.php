@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,7 @@ Route::get('/', function () {
     return redirect('/gomedia_test');
     return view('welcome');
 });
+
+Route::post('login', [LoginController::class, 'authenticate']);
+
+// Route::get('example', array('middleware' => 'cors', 'uses' => 'ExampleController@dummy'));

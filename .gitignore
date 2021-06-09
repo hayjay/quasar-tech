@@ -17,6 +17,7 @@ yarn-error.log
 
 # QUASAR GIT IGNORE
 
+gomedia_frontend/.env
 gomedia_frontend/.DS_Store
 gomedia_frontend/.thumbs.db
 gomedia_frontend/node_modules
