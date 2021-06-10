@@ -67,12 +67,12 @@ const linksData = [
     icon: 'add_circle',
     link: '/list/create'
   },
-  {
-    title: 'Find List By ID',
-    caption: 'To find a specific list, click here.',
-    icon: 'chat',
-    link: '/list/create'
-  },
+  // {
+  //   title: 'Find List By ID',
+  //   caption: 'To find a specific list, click here.',
+  //   icon: 'chat',
+  //   link: '/list/create'
+  // },
   {
     title: 'Transaction Log',
     caption: 'View all activity log.',

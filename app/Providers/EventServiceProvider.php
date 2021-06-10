@@ -18,6 +18,18 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\TodoCreated' => [
+            'App\Listeners\LogTodoCreatedTransaction',
+        ],
+        'App\Events\TodoUpdated' => [
+            'App\Listeners\LogTodoUpdatedTransaction',
+        ],
+        'App\Events\TodoDeleted' => [
+            'App\Listeners\LogTodoDeletedTransaction',
+        ],
+        'App\Events\TodoFetched' => [
+            'App\Listeners\LogTodoFetchedTransaction',
+        ],
     ];
 
     /**
