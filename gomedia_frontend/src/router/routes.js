@@ -10,13 +10,13 @@ const routes = [
       { path: '/list/create', component: () => import('components/list/Add.vue') },
       { path: '/transaction-log/all', component: () => import('components/transactionLog/Index.vue') },
     ],
-    // beforeEnter: (to, from, next) => {
-    //     if(Store.state.auth.authenticated) {
-    //        return next();
+    beforeEnter: (to, from, next) => {
+        if(Store.state.auth.authenticated) {
+           return next();
 
-    //     }
-    //     return next('/');
-    // }
+        }
+        return next('/');
+    }
   },
   {
     path: '/',

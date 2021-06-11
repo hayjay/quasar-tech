@@ -30,8 +30,6 @@ export const deleteTodo = async ({ dispatch }, todo_id) => {
 
 export const updateTodo = async ({ dispatch }, formData) => {
     try {
-        console.log('eeenf')
-        console.log('whe', formData);
         const response = await api.put('api/list/update', formData)
         console.log(response);
         return response.data;

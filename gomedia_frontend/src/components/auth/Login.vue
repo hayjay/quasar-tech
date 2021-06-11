@@ -17,6 +17,7 @@
                         <q-input
                         ref="password"
                         filled
+                        :type="isPwd ? 'password' : 'text'"
                         v-model="userData.password"
                         label="Password *"
                         hint="Please enter your password."
@@ -43,6 +44,7 @@ export default {
     
     data () {
         return {
+            isPwd: true,
             userData : {
                 email: null,
                 password: null,
@@ -68,14 +70,13 @@ export default {
                     
                     if(this.$route.params.nextUrl != null){
                         return this.$router.push(this.$route.params.nextUrl)
-                    }else{
-                        this.$router.push('dashboard')
                     }
-                    return this.$q.notify({
+                    this.$q.notify({
                         icon: 'done',
                         color: 'positive',
                         message: `Login Successful, Welcome!`
                     });
+                    return this.$router.push('dashboard')
                 }
                 this.$q.notify({
                     icon: 'report_problem',
