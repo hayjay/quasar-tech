@@ -27,7 +27,7 @@ Route::group(['prefix' => 'list', 'middleware' => 'api.request.response.logger']
 	Route::delete('delete/{id}', [TodoListController::class, 'delete']);
 });
 
-Route::group(['prefix' => 'transaction', 'middleware' => 'api.request.response.logger'], function(){
+Route::group(['prefix' => 'transaction'], function(){
 	Route::get('all', [TransactionController::class, 'fetch']);
 	Route::post('search', [TransactionController::class, 'search']);
 });

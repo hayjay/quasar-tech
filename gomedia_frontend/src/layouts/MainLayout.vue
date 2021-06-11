@@ -77,7 +77,7 @@ const linksData = [
     title: 'Transaction Log',
     caption: 'View all activity log.',
     icon: 'chat',
-    link: '/user/transaction-log'
+    link: '/transaction-log/all'
   },
 ];
 

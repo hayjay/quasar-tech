@@ -15,6 +15,7 @@ class TodoListResource extends JsonResource
     public function toArray($request)
     {
         return [
+                'id' => $this['id'] ?? null,
                 'name' => $this['name'] ?? null,
                 'description' => $this['description'] ?? null,
                 'status' => $this['status'] ?? null,

@@ -9,6 +9,7 @@ class TransactionRepository implements TransactionRepositoryInterface
 {
     public function all()
     {
+    	return TransactionLog::select('description','ip_address', 'payload')->get();
     	return TransactionLog::all();
     }
 

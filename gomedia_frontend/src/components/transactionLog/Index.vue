@@ -1,12 +1,19 @@
 <template>
     <div class="q-pa-md">
         <q-table
-            title="Added Lists"
+            title="Transaction Logs"
             :data="data"
             :columns="columns"
             row-key="name"
             :pagination.sync="pagination"
         >
+        <div class="col-3">
+        <q-input  dense debounce="400" color="primary" v-model="search">
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+        </div> 
             <q-td slot="body-cell-fieldName" slot-scope="props" :props="props">
                 <q-field :error="$v.form.$each[props.row.__index].fieldName.$error"
                                 :error-label="errorMsg($v.form.$each[props.row.__index].fieldName)">
@@ -37,28 +44,28 @@ export default {
         todo_list_data : [],
         columns: [
           {
-            name: 'name',
+            name: 'description',
             required: true,
-            label: 'Name',
+            label: 'Description',
             align: 'left',
-            field: row => row.name,
+            field: row => row.description,
             format: val => `${val}`,
             sortable: true
           },
-          { name: 'description', align: 'center', label: 'Description', field: 'description', sortable: true },
-          { name: 'status', align: 'center', label: 'Status', field: 'status', sortable: true },
+          { name: 'ip_address', align: 'center', label: 'IP Address', field: 'ip_address', sortable: true },
+          { name: 'payload', align: 'center', label: 'Payload', field: 'payload', sortable: true },
         ],
-        data : this.getTodoList(),
+        data : this.getTransactionLog(),
       }
     },
     methods : {
       ...mapActions({
-            fetchTodoList: 'TodoList/all'
+            fetchTransactionLog: 'TransactionLog/all'
       }),
 
-      getTodoList() {
+      getTransactionLog() {
         var result = [];
-        this.fetchTodoList().then(response => {
+        this.fetchTransactionLog().then(response => {
           if (response[0].data.status == false) {
               this.$q.notify({
                   icon: 'report_problem',
@@ -76,11 +83,11 @@ export default {
           this.$q.notify({
               icon: 'report_problem',
               color: 'negative',
-              message: `An error occured while fetching todo list. ${error}`
+              message: `An error occured while fetching transaction logs : ${error}`
           });
         });
         return result;
-      } 
+      },
     },
 }
 </script>

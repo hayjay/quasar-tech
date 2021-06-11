@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import auth from './auth'
 import TodoList from './TodoList'
+import TransactionLog from './TransactionLog'
 
 
 Vue.use(Vuex)
@@ -19,7 +20,8 @@ Vue.use(Vuex)
 const Store = new Vuex.Store({
   modules: {
     auth,
-    TodoList
+    TodoList,
+    TransactionLog
   },
 
   // enable strict mode (adds overhead!)

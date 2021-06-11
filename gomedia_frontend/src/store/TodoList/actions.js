@@ -18,3 +18,12 @@ export const all = async ({ dispatch }) => {
         return error;
     }
 };
+
+export const deleteTodo = async ({ dispatch }, todo_id) => {
+    try {
+        const response = await api.delete(`api/list/delete/${todo_id}`)
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+};
