@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import auth from './auth'
+import TodoList from './TodoList'
+
 
 Vue.use(Vuex)
 
@@ -16,7 +18,8 @@ Vue.use(Vuex)
 
 const Store = new Vuex.Store({
   modules: {
-    auth
+    auth,
+    TodoList
   },
 
   // enable strict mode (adds overhead!)

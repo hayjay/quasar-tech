@@ -8,7 +8,12 @@ class TodoListService
 {
 
     public function store($data) : object {
-    	$todo = TodoList::create($data);
+    	$todo = TodoList::create([
+    		'name' => $data['name'],
+    		'description' => $data['description'],
+    		'status' => $data['status'],
+    		'created_by' => auth()->user()->id,
+    	]);
         event(new TodoCreated($todo));
     	return $todo;
     }

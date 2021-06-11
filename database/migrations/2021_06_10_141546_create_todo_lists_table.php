@@ -18,6 +18,7 @@ class CreateTodoListsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('status');
+            $table->integer('created_by');//intention is to reference the users table..
             $table->timestamps();
         });
     }

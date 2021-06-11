@@ -16,7 +16,9 @@ class TodoListRepository implements TodoListRepositoryInterface
 
     public function all()
     {
-    	$todo_lists = TodoList::all();
+    	$todo_lists = TodoList::where('created_by', auth()->user()->id)
+                                ->orderBy('id', 'desc')
+                                ->get();
         event(new TodoFetched($todo_lists));
         return $todo_lists;
     }

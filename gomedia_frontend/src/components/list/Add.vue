@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     name: 'Add',
     
@@ -53,7 +55,11 @@ export default {
         }
     },
     methods: {
-        onSubmit () {
+        ...mapActions({
+            storeTodoList: 'TodoList/create'
+        }),
+
+        async onSubmit () {
             this.$refs.task_name.validate()
             this.$refs.description.validate()
             this.$refs.status.validate()
@@ -62,11 +68,37 @@ export default {
                 this.formHasError = true
             }
             else {
-                this.$q.notify({
-                icon: 'done',
-                color: 'positive',
-                message: 'Submitted'
-                })
+                let formData = {
+                    'name' : this.task_name,
+                    'description' : this.description,
+                    'status' : this.status
+                };
+                await this.storeTodoList(formData).then(response => {
+                    let data = response.data[0];
+                    if (data.status == true) {
+                        this.$q.notify({
+                            icon: 'done',
+                            color: 'positive',
+                            message: data.message
+                        });
+                        this.onReset();
+                        this.$router.push('all')
+                    } else{
+                        this.$q.notify({
+                            icon: 'report_problem',
+                            color: 'negative',
+                            message: `Something went wrong ${data.message}`
+                        })
+                    }
+                }).catch(error => { 
+                    console.log(error) 
+                    this.$q.notify({
+                        icon: 'report_problem',
+                        color: 'negative',
+                        message: `Something went wrong ${error}`
+                    })
+                });
+                
             }
         },
 

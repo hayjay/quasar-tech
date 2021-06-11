@@ -8,6 +8,7 @@ const routes = [
       { path: '', component: () => import('pages/Index.vue') },
       { path: '/list/all', component: () => import('components/list/Index.vue') },
       { path: '/list/create', component: () => import('components/list/Add.vue') },
+      { path: '/transaction-log/all', component: () => import('components/transactionLog/Index.vue') },
     ],
     // beforeEnter: (to, from, next) => {
     //     if(Store.state.auth.authenticated) {
