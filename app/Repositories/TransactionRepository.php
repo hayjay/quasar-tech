@@ -9,7 +9,10 @@ class TransactionRepository implements TransactionRepositoryInterface
 {
     public function all()
     {
-    	return TransactionLog::select('description','ip_address', 'payload')->get();
+    	return TransactionLog::select('description','ip_address', 'payload')
+    							->where('user_id', auth()->user()->id)
+    							->orderBy('id', 'desc')
+    							->get();
     	return TransactionLog::all();
     }
 

@@ -8,7 +8,7 @@
             :pagination.sync="pagination"
         >
         <div class="col-3">
-        <q-input  dense debounce="400" color="primary" v-model="search">
+        <q-input  dense debounce="400" color="primary">
           <template v-slot:append>
             <q-icon name="search" />
           </template>

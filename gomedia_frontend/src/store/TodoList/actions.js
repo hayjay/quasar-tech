@@ -12,9 +12,9 @@ export const create = async ({ dispatch }, formData) => {
 export const all = async ({ dispatch }) => {
     try {
         const response = await api.get('api/list/all')
-        // console.log(response);
         return response.data;
     } catch (error) {
+        console.log('error')
         return error;
     }
 };
@@ -22,6 +22,18 @@ export const all = async ({ dispatch }) => {
 export const deleteTodo = async ({ dispatch }, todo_id) => {
     try {
         const response = await api.delete(`api/list/delete/${todo_id}`)
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+};
+
+export const updateTodo = async ({ dispatch }, formData) => {
+    try {
+        console.log('eeenf')
+        console.log('whe', formData);
+        const response = await api.put('api/list/update', formData)
+        console.log(response);
         return response.data;
     } catch (error) {
         return error;

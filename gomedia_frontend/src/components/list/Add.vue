@@ -91,7 +91,6 @@ export default {
                         })
                     }
                 }).catch(error => { 
-                    console.log(error) 
                     this.$q.notify({
                         icon: 'report_problem',
                         color: 'negative',

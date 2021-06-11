@@ -71,7 +71,7 @@ export default {
                     }else{
                         this.$router.push('dashboard')
                     }
-                    this.$q.notify({
+                    return this.$q.notify({
                         icon: 'done',
                         color: 'positive',
                         message: `Login Successful, Welcome!`

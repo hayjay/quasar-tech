@@ -31,7 +31,7 @@
                     </q-card-section>
 
                     <q-card-actions align="right">
-                      <q-btn flat label="OK" color="primary" v-close-popup></q-btn>
+                      <q-btn flat label="Submit" color="primary" v-close-popup @click="addRow"></q-btn>
                     </q-card-actions>
                   </q-card>
                 </q-dialog>
@@ -115,11 +115,16 @@ export default {
       }
     },
     methods : {
+      ...mapActions({
+            fetchTodoList: 'TodoList/all',
+            deleteTodo: 'TodoList/deleteTodo',
+            updateTodo: 'TodoList/updateTodo',
+      }),
+
       deleteItem(item) {
         const index = this.data.indexOf(item);
         confirm("Are you sure you want to delete this todo list?") &&
           this.deleteTodo(item.id).then(response => {
-            console.log(response)
             if (response[0].status == false) {
                 this.$q.notify({
                     icon: 'report_problem',
@@ -135,15 +140,55 @@ export default {
               });
             }
           
-        }).catch(error => {
+          }).catch(error => {
 
-          this.$q.notify({
-              icon: 'report_problem',
-              color: 'negative',
-              message: `An error occured while fetching todo list. ${error}`
+            this.$q.notify({
+                icon: 'report_problem',
+                color: 'negative',
+                message: `An error occured while deleting todo list. ${error}`
           });
         });
       },
+
+      addRow() {
+        let updated_data = this.data[this.editedIndex];
+        console.log('ddd', updated_data);
+        console.log('real', this.data[this.editedIndex]);
+        
+
+        if (this.editedIndex > -1) {
+          Object.assign(this.data[this.editedIndex], this.editedItem);
+          this.updateTodo(updated_data).then(response => {
+            if (response[0].status == false) {
+                this.$q.notify({
+                    icon: 'report_problem',
+                    color: 'negative',
+                    message: `Something went wrong ${data.message}`
+                })
+            }else{
+              this.$q.notify({
+                  icon: 'done',
+                  color: 'positive',
+                  message: response[0].message
+              });
+            }
+          
+          }).catch(error => {
+
+            this.$q.notify({
+                icon: 'report_problem',
+                color: 'negative',
+                message: `An error occured while updating todo list. ${error}`
+            });
+          });
+
+        } else {
+          alert('uh')
+          this.data.push(this.editedItem);
+        }
+        this.close()
+      },
+
       editItem(item) {
         this.editedIndex = this.data.indexOf(item);
         this.editedItem = Object.assign({}, item);
@@ -156,11 +201,6 @@ export default {
           this.editedIndex = -1
         }, 300)
       },
-      
-      ...mapActions({
-            fetchTodoList: 'TodoList/all',
-            deleteTodo: 'TodoList/deleteTodo',
-      }),
 
       getTodoList() {
         var result = [];
